@@ -1690,11 +1690,12 @@ h1 {
   }
 }
 /* PHOTOS DES FORMATIONS, DES EXPÉRIENCES ET DES PROJETS */
-[data-photo-frame]  {
+/* Logos compacts ; les images gardent leurs proportions et restent entières. */
+[data-photo-frame] {
   position: relative;
   overflow: hidden;
 }
-.portfolio-photo  {
+.portfolio-photo {
   position: absolute;
   inset: 0;
   display: block;
@@ -1704,97 +1705,177 @@ h1 {
   object-position: center;
   opacity: 0;
 }
-.has-photo > .portfolio-photo  {
+.has-photo > .portfolio-photo {
   opacity: 1;
 }
-[data-photo-fallback][hidden], .portfolio-photo[hidden], .dialog-project-photo[hidden]  {
+[data-photo-fallback][hidden],
+.portfolio-photo[hidden],
+.dialog-project-photo[hidden] {
   display: none !important;
 }
-.school-visual  {
-  height: 170px;
-  margin: 30px 0 26px;
+
+/* FORMATIONS : même petit cadre, aligné avec les titres de chaque carte. */
+.school-visual {
+  width: 176px;
+  max-width: 100%;
+  height: 88px;
+  align-self: flex-start;
+  flex-shrink: 0;
+  margin: 22px 0 20px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: var(--panel-soft);
 }
-.school-visual .school-word  {
-  display: flex;
-  height: 100%;
-  margin: 0;
-  padding: 18px;
-  min-height: 0;
-  flex-direction: column;
-  justify-content: center;
-}
-.experience-photo  {
-  margin: 0 0 24px;
-}
-.company-visual  {
-  height: 200px;
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  background: var(--panel-soft);
-}
-.company-photo-fallback  {
-  display: flex;
-  height: 100%;
-  padding: 24px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.company-photo-fallback strong  {
-  font-size: clamp(1.4rem, 4vw, 2.2rem);
-  letter-spacing: .02em;
-  color: var(--accent);
-}
-.company-photo-fallback span  {
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: .8rem;
-  letter-spacing: .12em;
-}
-.experience-photo figcaption  {
-  margin-top: 8px;
-  font-size: .8rem;
-  line-height: 1.5;
-  color: var(--muted);
-}
-.project-cover-fallback  {
-  display: contents;
-}
-.project-cover.has-photo  {
-  padding: 0;
-}
-/* Ajoutez portfolio-media--logo au cadre pour afficher un logo entier. */
-.portfolio-media--logo.has-photo  {
+.school-visual.has-photo,
+.company-visual.has-photo,
+.portfolio-media--logo.has-photo {
   background: #fff;
 }
-.portfolio-media--logo > .portfolio-photo  {
-  object-fit: contain;
-  padding: 16px;
-}
-/* Ajoutez project-cover--contain au cadre d’un schéma pour éviter le recadrage. */
-.project-cover--contain > .portfolio-photo  {
+.school-visual > .portfolio-photo,
+.company-visual > .portfolio-photo,
+.portfolio-media--logo > .portfolio-photo {
   object-fit: contain;
   padding: 10px;
 }
-.dialog-project-photo  {
+.school-visual .school-word {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 12px;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+.school-visual .school-word span {
+  margin-top: 6px;
+  font-size: .6rem;
+  letter-spacing: .15em;
+}
+
+/* EXPÉRIENCE : logo sous la date ; missions alignées avec le titre. */
+.experience-content {
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr);
+  column-gap: 32px;
+  row-gap: 12px;
+  align-items: start;
+  padding: 0 70px 30px 0;
+}
+.experience-photo {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 160px;
+  max-width: 100%;
+  margin: 0;
+}
+.company-visual {
+  width: 100%;
+  height: 80px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel-soft);
+}
+.company-photo-fallback {
+  display: flex;
+  height: 100%;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.company-photo-fallback strong {
+  font-size: 1.1rem;
+  letter-spacing: .01em;
+  color: var(--accent);
+}
+.company-photo-fallback span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: .08em;
+}
+.experience-photo figcaption {
+  margin-top: 7px;
+  font-size: .74rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.experience-content > .dash-list {
+  grid-column: 2;
+  min-width: 0;
+  margin: 0;
+}
+.experience-content > .dash-list li:last-child {
+  margin-bottom: 0;
+}
+.experience-content > .tags {
+  grid-column: 2;
+  min-width: 0;
+  margin-top: 0;
+}
+
+/* PROJETS : couvertures moins hautes et schémas visibles en entier. */
+.project-cover-fallback {
+  display: contents;
+}
+.project-cover.has-photo {
+  height: 180px;
+  padding: 0;
+  background: var(--panel-soft);
+}
+.project-cover.has-photo > .portfolio-photo,
+.project-cover--contain > .portfolio-photo {
+  object-fit: contain;
+  padding: 12px;
+}
+.dialog-project-photo {
   display: block;
   width: 100%;
-  max-height: 340px;
+  max-height: 280px;
   object-fit: contain;
   border-radius: 8px;
   background: var(--panel-soft);
-  margin: 0 0 24px;
+  margin: 0 0 22px;
 }
-@media (max-width: 700px)  {
-  .school-visual  {
-    height: 175px;
-    margin-top: 24px;
-  }
-  .company-visual  {
-    height: 180px;
+
+@media (max-width: 1120px) {
+  .experience-content {
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 25px;
+    padding-right: 59px;
   }
 }
+
+@media (max-width: 700px) {
+  .school-visual {
+    width: 160px;
+    height: 80px;
+    margin: 20px 0 18px;
+  }
+  .experience-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 0 0 26px;
+  }
+  .experience-photo {
+    grid-column: 1;
+    grid-row: auto;
+    width: 144px;
+  }
+  .company-visual {
+    height: 72px;
+  }
+  .experience-content > .dash-list,
+  .experience-content > .tags {
+    grid-column: 1;
+  }
+  .project-cover.has-photo {
+    height: 170px;
+  }
+  .dialog-project-photo {
+    max-height: 240px;
+  }
+}
+
