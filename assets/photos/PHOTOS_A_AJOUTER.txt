@@ -1,0 +1,10 @@
+Ajoutez vos propres photos dans ce dossier :
+
+FORMATIONS : ensa.jpg, est.jpg, bac.jpg
+ENTREPRISES : segula.jpg, auto-hall.jpg, ocp.jpg
+PROJETS : adas.jpg, dms.jpg, ev.jpg, can.jpg, cao.jpg
+
+Le fichier segula.jpg sert aux deux expériences SEGULA.
+Le fichier ocp.jpg sert aux deux stages OCP.
+Si un fichier est en PNG, modifiez son chemin src dans index.html.
+Les visuels textuels restent affichés tant que les images manquent.

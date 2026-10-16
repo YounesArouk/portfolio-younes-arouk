@@ -1,3 +1,23 @@
+// PHOTOS : modifiez les chemins src dans index.html si vos fichiers sont en PNG.
+// Les photos manquantes gardent un visuel textuel jusqu’à leur ajout.
+function preparePortfolioPhoto(image) {
+  const frame = image.closest('[data-photo-frame]');
+  if (!frame) return;
+  const fallback = frame.querySelector('[data-photo-fallback]');
+
+  function showPhoto(loaded) {
+    frame.classList.toggle('has-photo', loaded);
+    image.hidden = !loaded;
+    if (fallback) fallback.hidden = loaded;
+  }
+
+  image.addEventListener('load', () => showPhoto(image.naturalWidth > 0));
+  image.addEventListener('error', () => showPhoto(false));
+  if (image.complete) showPhoto(image.naturalWidth > 0);
+}
+
+document.querySelectorAll('[data-portfolio-photo]').forEach(preparePortfolioPhoto);
+
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
 const navLinks = [...document.querySelectorAll('.nav-link')];
@@ -152,6 +172,21 @@ document.querySelectorAll('[data-project]').forEach(button => {
       return element;
     }
     add('h2', project.title).id = 'dialog-title';
+    // La fiche détaillée réutilise la même photo que la carte du projet.
+    const cardPhoto = button.closest('.project-card').querySelector('[data-portfolio-photo]');
+    if (cardPhoto) {
+      const detailPhoto = document.createElement('img');
+      detailPhoto.className = 'dialog-project-photo';
+      detailPhoto.alt = cardPhoto.alt;
+      detailPhoto.hidden = true;
+      detailPhoto.addEventListener('load', () => {
+        detailPhoto.hidden = detailPhoto.naturalWidth === 0;
+      });
+      detailPhoto.addEventListener('error', () => { detailPhoto.hidden = true; });
+      detailPhoto.src = cardPhoto.getAttribute('src');
+      dialogContent.append(detailPhoto);
+      if (detailPhoto.complete && detailPhoto.naturalWidth > 0) detailPhoto.hidden = false;
+    }
     add('p', project.intro);
     add('h3', 'Objectif');
     add('p', project.objective);
