@@ -1690,7 +1690,6 @@ h1 {
   }
 }
 /* PHOTOS DES FORMATIONS, DES EXPÉRIENCES ET DES PROJETS */
-/* Logos compacts ; les images gardent leurs proportions et restent entières. */
 [data-photo-frame] {
   position: relative;
   overflow: hidden;
@@ -1753,25 +1752,41 @@ h1 {
   letter-spacing: .15em;
 }
 
-/* EXPÉRIENCE : logo sous la date ; missions alignées avec le titre. */
-.experience-content {
+/* EXPÉRIENCE : les logos restent visibles dans l'en-tête de chaque stage. */
+.experience-title {
   display: grid;
-  grid-template-columns: 225px minmax(0, 1fr);
-  column-gap: 32px;
-  row-gap: 12px;
-  align-items: start;
-  padding: 0 70px 30px 0;
+  grid-template-columns: minmax(0, 1fr) 128px;
+  grid-template-areas:
+    "company logo"
+    "role logo"
+    "subtitle logo";
+  column-gap: 24px;
+  row-gap: 8px;
+  min-width: 0;
 }
-.experience-photo {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  width: 160px;
+.experience-title > .company {
+  grid-area: company;
+  min-width: 0;
+}
+.experience-title > strong {
+  grid-area: role;
+  min-width: 0;
+}
+.experience-subtitle {
+  grid-area: subtitle;
+  min-width: 0;
+}
+.experience-logo {
+  display: block;
+  grid-area: logo;
+  align-self: start;
+  width: 128px;
   max-width: 100%;
-  margin: 0;
 }
 .company-visual {
+  display: block;
   width: 100%;
-  height: 80px;
+  height: 72px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: var(--panel-soft);
@@ -1796,55 +1811,54 @@ h1 {
   font-size: .58rem;
   letter-spacing: .08em;
 }
-.experience-photo figcaption {
-  margin-top: 7px;
-  font-size: .74rem;
-  line-height: 1.45;
-  color: var(--muted);
-}
-.experience-content > .dash-list {
-  grid-column: 2;
-  min-width: 0;
-  margin: 0;
-}
-.experience-content > .dash-list li:last-child {
-  margin-bottom: 0;
-}
-.experience-content > .tags {
-  grid-column: 2;
-  min-width: 0;
-  margin-top: 0;
+.experience-logo-caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-/* PROJETS : couvertures moins hautes et schémas visibles en entier. */
+/* PROJETS : retour aux couvertures sur toute la largeur des cartes. */
 .project-cover-fallback {
   display: contents;
 }
 .project-cover.has-photo {
-  height: 180px;
   padding: 0;
-  background: var(--panel-soft);
 }
-.project-cover.has-photo > .portfolio-photo,
-.project-cover--contain > .portfolio-photo {
+.project-cover.has-photo > .portfolio-photo {
+  object-fit: cover;
+  padding: 0;
+}
+/* Variante facultative pour un schéma à afficher sans recadrage. */
+.project-cover--contain.has-photo > .portfolio-photo {
   object-fit: contain;
-  padding: 12px;
+  padding: 10px;
 }
 .dialog-project-photo {
   display: block;
   width: 100%;
-  max-height: 280px;
+  max-height: 340px;
   object-fit: contain;
   border-radius: 8px;
   background: var(--panel-soft);
-  margin: 0 0 22px;
+  margin: 0 0 24px;
 }
 
-@media (max-width: 1120px) {
-  .experience-content {
-    grid-template-columns: 200px minmax(0, 1fr);
-    column-gap: 25px;
-    padding-right: 59px;
+@media (max-width: 950px) {
+  .experience-title {
+    grid-template-columns: minmax(0, 1fr) 112px;
+    column-gap: 18px;
+  }
+  .experience-logo {
+    width: 112px;
+  }
+  .company-visual {
+    height: 64px;
   }
 }
 
@@ -1854,28 +1868,16 @@ h1 {
     height: 80px;
     margin: 20px 0 18px;
   }
-  .experience-content {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
-    padding: 0 0 26px;
+  .experience-title {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) 96px;
+    column-gap: 16px;
   }
-  .experience-photo {
-    grid-column: 1;
-    grid-row: auto;
-    width: 144px;
+  .experience-logo {
+    width: 96px;
   }
-  .company-visual {
-    height: 72px;
-  }
-  .experience-content > .dash-list,
-  .experience-content > .tags {
-    grid-column: 1;
-  }
-  .project-cover.has-photo {
-    height: 170px;
-  }
-  .dialog-project-photo {
-    max-height: 240px;
+  .company-photo-fallback strong {
+    font-size: .9rem;
   }
 }
 
