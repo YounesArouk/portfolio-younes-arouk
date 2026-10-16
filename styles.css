@@ -1752,64 +1752,67 @@ h1 {
   letter-spacing: .15em;
 }
 
-/* EXPÉRIENCE : les logos restent visibles dans l'en-tête de chaque stage. */
-.experience-title {
+/* EXPÉRIENCE : petit logo à gauche, toujours visible dans l'en-tête. */
+.experience summary {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 128px;
-  grid-template-areas:
-    "company logo"
-    "role logo"
-    "subtitle logo";
+  grid-template-columns: 104px 185px minmax(0, 1fr) 38px;
+  grid-template-areas: "logo date title expand";
   column-gap: 24px;
-  row-gap: 8px;
+  row-gap: 14px;
+  align-items: start;
+}
+.experience-date {
+  grid-area: date;
   min-width: 0;
 }
-.experience-title > .company {
-  grid-area: company;
+.experience-title {
+  display: flex;
+  flex-direction: column;
+  grid-area: title;
+  gap: 8px;
   min-width: 0;
 }
-.experience-title > strong {
-  grid-area: role;
-  min-width: 0;
-}
-.experience-subtitle {
-  grid-area: subtitle;
-  min-width: 0;
+.experience .expand-icon {
+  grid-area: expand;
 }
 .experience-logo {
   display: block;
   grid-area: logo;
   align-self: start;
-  width: 128px;
+  width: 104px;
   max-width: 100%;
+  margin-top: 2px;
 }
 .company-visual {
   display: block;
   width: 100%;
-  height: 72px;
+  height: 68px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: var(--panel-soft);
 }
+.company-visual > .portfolio-photo {
+  padding: 8px;
+}
 .company-photo-fallback {
   display: flex;
   height: 100%;
-  padding: 10px;
+  padding: 6px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
 }
 .company-photo-fallback strong {
-  font-size: 1.1rem;
-  letter-spacing: .01em;
+  font-size: .84rem;
+  letter-spacing: 0;
   color: var(--accent);
 }
 .company-photo-fallback span {
   color: var(--muted);
   font-family: var(--mono);
-  font-size: .58rem;
-  letter-spacing: .08em;
+  font-size: .46rem;
+  letter-spacing: .02em;
 }
 .experience-logo-caption {
   position: absolute;
@@ -1822,6 +1825,11 @@ h1 {
   white-space: nowrap;
   border: 0;
 }
+.experience-content {
+  display: block;
+  padding: 0 62px 30px 337px;
+}
+
 
 /* PROJETS : retour aux couvertures sur toute la largeur des cartes. */
 .project-cover-fallback {
@@ -1849,16 +1857,37 @@ h1 {
   margin: 0 0 24px;
 }
 
+@media (max-width: 1120px) {
+  .experience summary {
+    grid-template-columns: 96px 170px minmax(0, 1fr) 34px;
+    column-gap: 22px;
+  }
+  .experience-logo {
+    width: 96px;
+  }
+  .company-visual {
+    height: 62px;
+  }
+  .experience-content {
+    padding-right: 56px;
+    padding-left: 310px;
+  }
+}
+
 @media (max-width: 950px) {
-  .experience-title {
-    grid-template-columns: minmax(0, 1fr) 112px;
+  .experience summary {
+    grid-template-columns: 84px 145px minmax(0, 1fr) 32px;
     column-gap: 18px;
   }
   .experience-logo {
-    width: 112px;
+    width: 84px;
   }
   .company-visual {
-    height: 64px;
+    height: 56px;
+  }
+  .experience-content {
+    padding-right: 50px;
+    padding-left: 265px;
   }
 }
 
@@ -1868,16 +1897,46 @@ h1 {
     height: 80px;
     margin: 20px 0 18px;
   }
-  .experience-title {
-    grid-column: 1 / -1;
-    grid-template-columns: minmax(0, 1fr) 96px;
+  .experience summary {
+    grid-template-columns: 76px minmax(0, 1fr) 32px;
+    grid-template-areas:
+      "logo date expand"
+      "logo title title";
     column-gap: 16px;
+    row-gap: 14px;
   }
   .experience-logo {
-    width: 96px;
+    width: 76px;
+  }
+  .company-visual {
+    height: 50px;
+  }
+  .company-visual > .portfolio-photo {
+    padding: 6px;
   }
   .company-photo-fallback strong {
-    font-size: .9rem;
+    font-size: .65rem;
+  }
+  .company-photo-fallback span {
+    font-size: .36rem;
+  }
+  .experience-content {
+    padding: 0 0 26px 92px;
   }
 }
 
+@media (max-width: 380px) {
+  .experience summary {
+    grid-template-columns: 64px minmax(0, 1fr) 30px;
+    column-gap: 12px;
+  }
+  .experience-logo {
+    width: 64px;
+  }
+  .company-visual {
+    height: 44px;
+  }
+  .experience-content {
+    padding-left: 76px;
+  }
+}
