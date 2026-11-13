@@ -76,7 +76,7 @@ updateProgress();
 
 const projects = {
   "adas": {
-    "title": "ADAS distribué sur robot 4WD",
+    "title": "DriveGuard — système automobile multi-ECU",
     "intro": "Des fonctions d’aide à la conduite modélisées et validées sous MATLAB/Simulink.",
     "objective": "Étudier les fonctions ACC, FCW et AEB sur une plateforme robotique 4WD.",
     "workTitle": "Avancement",
@@ -226,3 +226,15 @@ document.querySelector('.copy-email').addEventListener('click', async () => {
     status.textContent = 'Vous pouvez copier cette adresse : aroukyounes2@gmail.com';
   }
 });
+
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const headingObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        headingObserver.unobserve(entry.target);
+      }
+    }
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.section-heading').forEach(heading => headingObserver.observe(heading));
+}
