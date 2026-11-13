@@ -81,8 +81,8 @@ const projects = {
     "objective": "Étudier les fonctions ACC, FCW et AEB sur une plateforme robotique 4WD.",
     "workTitle": "Avancement",
     "work": [
-      "Modélisation et validation MIL des fonctions ACC, FCW et AEB sous MATLAB/Simulink.",
-      "Intégration prévue en C/C++ sur STM32 et Raspberry Pi, avec communication CAN et supervision Qt."
+      "Modélisation des fonctions ACC, FCW et AEB sous MATLAB/Simulink–Stateflow et validation MIL.",
+      "Architecture sur STM32F446RE et Raspberry Pi 5, avec communication CAN et supervision Qt."
     ],
     "tags": [
       "MATLAB / Simulink",
@@ -93,20 +93,22 @@ const projects = {
       "CAN",
       "Qt"
     ],
-    "focus": "Préparer le passage des modèles validés à leur intégration sur les cibles embarquées."
+    "focus": "Associer la validation MIL à une architecture automobile multi-ECU."
   },
   "dms": {
-    "title": "Détection de la somnolence du conducteur",
-    "intro": "Un modèle d’intelligence artificielle appliqué à la vigilance du conducteur.",
-    "objective": "Détecter la fatigue du conducteur en temps réel.",
+    "title": "Vision embarquée et ADAS",
+    "intro": "Vision embarquée pour la surveillance du conducteur et le freinage d’urgence.",
+    "objective": "Détecter la somnolence et étudier le freinage automatique d’urgence (AEB).",
     "work": [
-      "Modèle de détection de la fatigue du conducteur en temps réel."
+      "Détection de la somnolence et freinage d’urgence AEB avec YOLOv8, OpenCV, MediaPipe et ESP32."
     ],
     "tags": [
-      "Intelligence artificielle",
-      "Détection de somnolence"
+      "YOLOv8",
+      "OpenCV",
+      "MediaPipe",
+      "ESP32"
     ],
-    "focus": "Appliquer l’intelligence artificielle à une fonction de surveillance du conducteur."
+    "focus": "Associer la perception visuelle à des fonctions d’aide à la conduite."
   },
   "ev": {
     "title": "Freinage régénératif",
@@ -122,24 +124,6 @@ const projects = {
       "Commande"
     ],
     "focus": "Relier la commande du freinage à la récupération d’énergie."
-  },
-  "can": {
-    "title": "Coach de conduite — IA et CAN",
-    "intro": "Un projet associant analyse sur Raspberry Pi et communication CAN.",
-    "objective": "Évaluer la conduite et restituer un score accompagné de conseils.",
-    "work": [
-      "Analyse sur Raspberry Pi.",
-      "Échanges CAN avec Arduino et MCP2515.",
-      "Score et conseils de conduite."
-    ],
-    "tags": [
-      "Raspberry Pi",
-      "Arduino",
-      "MCP2515",
-      "CAN",
-      "IA"
-    ],
-    "focus": "Relier l’analyse des données, leur transmission et les conseils de conduite."
   },
   "suspension": {
     "title": "Suspension automobile",
